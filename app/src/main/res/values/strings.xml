@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">User Management Portal</string>
+    <string name="please_login_below">Please Login Below</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="content_decription">Content Desc</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="or">Or</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
 </resources>

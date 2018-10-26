@@ -31,7 +31,7 @@ public interface UserApiService {
     @FormUrlEncoded
     Call<CreateUser> createUser(@Field("name") String name, @Field("job") String job);
 
-    @POST("//api/login")
+    @POST("/api/login")
     @FormUrlEncoded
     Call<Login> performLogin(@Field("email") String email, @Field("password") String password);
 

@@ -12,7 +12,6 @@ import com.job.userportal.R;
 import com.job.userportal.datasource.rest.ApiUtils;
 import com.job.userportal.datasource.rest.UserApiService;
 import com.job.userportal.model.CreateUser;
-import com.job.userportal.model.Login;
 import com.job.userportal.model.UserResponse;
 
 import retrofit2.Call;
@@ -48,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         String user = mSharedPreferences.getString(LOGIN_USER_PREFS,null);
 
         if (user == null){
-            Intent intent = new Intent(this, Login.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/item_col_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:background="#757575"
+        android:tint="#232323"
+        app:srcCompat="@drawable/avatar_placeholder" />
+
+    <TextView
+        android:id="@+id/item_col_name"
+        style="@style/AppTheme.Subheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/item_col_phone"
+        android:layout_alignTop="@+id/item_col_image"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="24sp"
+        tools:text="Client Name" />
+
+    <TextView
+        android:id="@+id/item_col_phone"
+        style="@style/AppTheme.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_col_image"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="90dp"
+        android:text="Phone"
+        android:textColor="@color/greySecondary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/item_col_phonenum"
+        style="@style/AppTheme.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_col_image"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="124dp"
+        android:textColor="@color/greySecondary"
+        android:textSize="18sp"
+        tools:text="0708440184" />
+
+
+</RelativeLayout>

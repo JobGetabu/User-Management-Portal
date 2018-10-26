@@ -27,6 +27,9 @@ public interface UserApiService {
     @GET("/api/users?page=2")
     Call<List<UserResponse>> getUsers();
 
+    @GET("/api/users?page=2")
+    Call<UserResponse> getMyUsers();
+
     @POST("/api/users")
     @FormUrlEncoded
     Call<CreateUser> createUser(@Field("name") String name, @Field("job") String job);

@@ -33,7 +33,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     private UserItemListener userItemListener;
 
     public interface UserItemListener {
-        void onPostClick(long id);
+        void onPostClick(String id);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -60,7 +60,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
             UserData item = getUserDataList(getAdapterPosition());
-            //this.mItemListener.onPostClick(item.getData());
+            this.mItemListener.onPostClick(item.getFirstName());
 
             notifyDataSetChanged();
         }
@@ -68,7 +68,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         public void setUpUiSmall(UserData userData) {
 
             itemColName.setText(userData.getFirstName() + " " + userData.getLastName());
-            itemColPhonenum.setText(userData.getFirstName());
+            itemColPhonenum.setText(userData.getLastName()+ userData.getLastName());
             imageProcessor.setMyImage(itemColImage, userData.getAvatar());
         }
     }

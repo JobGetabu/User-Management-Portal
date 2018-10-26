@@ -9,7 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -38,6 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     ProgressBar progressLoading;
     @BindView(R.id.fab_button)
     FloatingActionButton fabButton;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     private UserApiService mUserApiService;
     private SharedPreferences mSharedPreferences;
@@ -49,6 +54,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+
+        setSupportActionBar(mToolbar);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
@@ -72,8 +79,9 @@ public class HomeActivity extends AppCompatActivity {
 
                         mAdapter = new UsersAdapter(HomeActivity.this, userResponce.getData(), new UsersAdapter.UserItemListener() {
                             @Override
-                            public void onPostClick(long id) {
-                                Toast.makeText(HomeActivity.this, "cc", Toast.LENGTH_SHORT).show();
+                            public void onPostClick(String name) {
+                                //TODO: view user profile
+                                Toast.makeText(HomeActivity.this,"ODO: view user profile for :"+ name, Toast.LENGTH_SHORT).show();
 
                             }
                         });
@@ -110,6 +118,30 @@ public class HomeActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.main_logout:
+                //Sign out the user
+                if (mSharedPreferences.getString(LOGIN_USER_PREFS, null) != null)
+                    editor.putString(LOGIN_USER_PREFS, null);
+
+                editor.apply();
+
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void testUserFetch() {
@@ -150,18 +182,10 @@ public class HomeActivity extends AppCompatActivity {
                 });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        //Sign out the user
-        if (mSharedPreferences.getString(LOGIN_USER_PREFS, null) != null)
-            editor.putString(LOGIN_USER_PREFS, null);
-
-        editor.apply();
-    }
-
     @OnClick(R.id.fab_button)
     public void onViewClicked() {
+
+        //TODO: add new user dialogue
+        Toast.makeText(this, "TODO: add new user dialogue", Toast.LENGTH_SHORT).show();
     }
 }

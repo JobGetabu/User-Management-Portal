@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "Home";
     private UserApiService mUserApiService;
     private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
 
         mUserApiService = ApiUtils.getUserApiService();
 
@@ -90,5 +92,16 @@ public class HomeActivity extends AppCompatActivity {
                         Log.e(TAG, "Unable to submit post to API.");
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //Sign out the user
+        if (mSharedPreferences.getString(LOGIN_USER_PREFS,null) != null)
+            editor.putString(LOGIN_USER_PREFS, null);
+
+        editor.apply();
     }
 }
